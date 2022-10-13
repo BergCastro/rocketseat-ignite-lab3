@@ -5,9 +5,10 @@ import { ReactNode } from 'react';
 export interface HeadingProps {
     size?: 'sm' | 'md' | 'lg';
     children: ReactNode;
-    asChild: boolean;
+    asChild?: boolean;
+    className?: string;
 }
-export function Heading({size = 'md', asChild, children }: HeadingProps) {
+export function Heading({size = 'md', asChild, children, className }: HeadingProps) {
     const Comp = asChild ? Slot : 'h2';
     return (
         <Comp className={clsx(
@@ -16,7 +17,8 @@ export function Heading({size = 'md', asChild, children }: HeadingProps) {
                 'text-xs': size === 'sm',
                 'text-sm': size === 'md',
                 'text-md': size === 'lg',
-            }
+            },
+            className
         )}>
             {children}
         </Comp>
